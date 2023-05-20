@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="wagmi-config">
+    <div className="w-full h-screen">
       <PageLayout>
         <Component {...pageProps} />
       </PageLayout>
