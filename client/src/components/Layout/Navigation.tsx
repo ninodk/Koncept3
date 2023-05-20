@@ -11,7 +11,7 @@ function classNames(...classes) {
 
 const navigation = [
   { name: "Home", href: "#", current: true },
-  { name: "NFTs", href: "#", current: false },
+  { name: "Collections", href: "#", current: false },
   { name: "Events", href: "#", current: false },
   { name: "Contests", href: "#", current: false },
   { name: "Creator Space", href: "#", current: false },
@@ -37,10 +37,10 @@ const Navigation: React.FC = () => {
               </div>
               <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                 <div className="flex items-center flex-shrink-0">
-                  <span className="block w-auto h-8 text-lg lg:hidden">
+                  <span className="block w-auto h-8 text-2xl antialiased font-semibold text-primary lg:hidden">
                     Koncept3
                   </span>
-                  <span className="hidden w-auto h-8 my-auto text-2xl antialiased font-semibold text-primary lg:block">
+                  <span className="hidden w-auto h-8 text-2xl antialiased font-semibold text-primary lg:block">
                     Koncept3
                   </span>
                   {/* <img
