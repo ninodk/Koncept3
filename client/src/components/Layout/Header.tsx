@@ -1,10 +1,9 @@
 import Head from "next/head";
 import Navigation from "./Navigation";
-import styles from "../../styles/Home.module.css";
 
 const Header: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Koncept3</title>
         <meta
