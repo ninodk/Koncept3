@@ -4,6 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import Home from "../../pages";
 import NFTsPage from "../../pages/NFTs";
 import Link from "next/link";
+import Image from "next/image";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -37,22 +38,19 @@ const Navigation: React.FC = () => {
               </div>
               <div className="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
                 <div className="flex items-center flex-shrink-0">
+                  <Image
+                    src="/polygon.png"
+                    className="h-8 mr-3"
+                    alt="Koncept3 Logo"
+                    width={30}
+                    height={30}
+                  />
                   <span className="block w-auto h-8 text-2xl antialiased font-semibold text-primary lg:hidden">
                     Koncept3
                   </span>
                   <span className="hidden w-auto h-8 text-2xl antialiased font-semibold text-primary lg:block">
                     Koncept3
                   </span>
-                  {/* <img
-                    className=""
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  />
-                  <img
-                    className="hidden w-auto h-8 lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  /> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
