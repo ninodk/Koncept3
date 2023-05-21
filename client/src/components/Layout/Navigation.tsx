@@ -20,13 +20,13 @@ const navigation = [
 
 const Navigation: React.FC = () => {
   return (
-    <Disclosure as="nav">
+    <Disclosure as="nav" className="">
       {({ open }) => (
         <>
-          <div className="relative">
-            <div className="fixed top-0 left-0 right-0 max-w-full bg-white sm:px-6 lg:px-8">
-              <div className="relative flex items-center justify-between h-16">
-                <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div className="box-border sticky top-0 z-40 block h-16 max-w-full bg-white">
+            <div className="block w-full h-full mx-auto max-w-screen sm:px-6 lg:px-8">
+              <div className="relative flex items-center justify-between h-full">
+                <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">
                   {/* Mobile menu button*/}
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 m-2 bg-white rounded-full text-primary hover:bg-primary hover:text-white focus:outline-none focus:ring-0">
                     <span className="sr-only">Open main menu</span>
@@ -38,23 +38,28 @@ const Navigation: React.FC = () => {
                   </Disclosure.Button>
                 </div>
                 <div className="flex items-center justify-center flex-1 sm:items-center sm:justify-start">
-                  <div className="flex items-center flex-shrink-0">
-                    <Image
-                      src="/polygon.png"
-                      className="h-8 mr-3"
-                      alt="Koncept3 Logo"
-                      width={30}
-                      height={30}
-                    />
-                    <span className="block w-auto h-8 text-2xl antialiased font-semibold text-primary lg:hidden">
-                      Koncept3
-                    </span>
-                    <span className="hidden w-auto h-8 text-2xl antialiased font-semibold text-primary lg:block">
-                      Koncept3
-                    </span>
+                  <div className="items-center h-full sm:flex sm:pr-1 lg:pr-1">
+                    <Link href="#" className="box-border flex items-center">
+                      <div className="box-border relative block h-9 w-9">
+                        <div className="box-border absolute inset-0 block overflow-hidden">
+                          <Image
+                            src="/polygon.png"
+                            className="box-content inset-0 block max-w-full max-h-full min-w-full min-h-full overflow-clip"
+                            alt="Koncept3 Logo"
+                            width={32}
+                            height={32}
+                          />
+                        </div>
+                      </div>
+                      <div className="flex ml-2.5 mt-0.5 relative box-border">
+                        <span className="w-full text-2xl antialiased font-semibold border-box text-primary ">
+                          Koncept3
+                        </span>
+                      </div>
+                    </Link>
                   </div>
-                  <div className="relative hidden overflow-auto sm:ml-6 sm:block">
-                    <div className="min-w-0 mx-auto max-w-fit sm:max-w-full sm:min-w-full">
+                  <div className="relative hidden overflow-auto lg:ml-6 lg:block">
+                    <div className="min-w-0 mx-auto max-w-fit lg:max-w-full lg:min-w-full">
                       <div className="flex space-x-4 overflow-x-auto justify-self-center">
                         {navigation.map((item) => (
                           <Link
@@ -86,7 +91,7 @@ const Navigation: React.FC = () => {
               </div>
             </div>
           </div>
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
                 <Disclosure.Button

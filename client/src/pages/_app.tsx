@@ -4,7 +4,7 @@ import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className="w-full h-screen mx-auto">
+    <div className="flex flex-col w-full h-screen mx-auto">
       <PageLayout>
         <Component {...pageProps} />
       </PageLayout>

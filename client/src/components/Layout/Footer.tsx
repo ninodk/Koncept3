@@ -7,21 +7,36 @@ const Footer: React.FC = () => {
       <div className="w-full px-6 py-6 sm:px-6 lg:px-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <Link href="/" className="flex items-center">
-              <Image
-                src="/polygon-white.png"
-                className="h-8 mr-3"
-                alt="Koncept3 Logo"
-                width={30}
-                height={30}
-              />
-              <div className="flex flex-col items-start">
-                <span className="text-2xl font-semibold whitespace-nowrap dark:text-white">
-                  Koncept3
-                </span>
-                <span className="text-white">Connect your brand with me!</span>
+            <div className="flex flex-col">
+              <div className="grid grid-flow-col grid-rows-2 gap-1 auto-cols-max">
+                <div className="box-border relative block col-start-1 h-9 w-9">
+                  <div className="box-border absolute inset-0 block overflow-hidden">
+                    <Image
+                      src="/polygon-white.png"
+                      className="box-content inset-0 block max-w-full max-h-full min-w-full min-h-full overflow-clip"
+                      alt="Koncept3 Logo"
+                      width={30}
+                      height={30}
+                    />
+                  </div>
+                </div>
+                <Link
+                  href="/"
+                  className="box-border flex items-center col-start-2"
+                >
+                  <div className="flex ml-2.5 mt-0.5 relative box-border ">
+                    <span className="text-2xl font-semibold whitespace-nowrap dark:text-white">
+                      Koncept3
+                    </span>
+                  </div>
+                </Link>
+                <div className="items-center col-start-2 row-start-2">
+                  <span className="ml-2.5 mt-0.5 text-white relative">
+                    Connect your brand with me!
+                  </span>
+                </div>
               </div>
-            </Link>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
