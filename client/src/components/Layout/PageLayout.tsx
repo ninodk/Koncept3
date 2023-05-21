@@ -3,10 +3,10 @@ import Header from "./Header";
 
 const PageLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="">
+    <div className="flex flex-col w-full h-full">
       <Header />
-      <div className="md:container md:mx-auto">
-        <div className="my-16">{children}</div>
+      <div className="flex flex-col w-full h-full">
+        <div className="mx-6 my-16">{children}</div>
       </div>
       <Footer />
     </div>

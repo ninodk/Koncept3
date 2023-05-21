@@ -23,7 +23,7 @@ const Navigation: React.FC = () => {
     <Disclosure as="nav" className="">
       {({ open }) => (
         <>
-          <div className="box-border sticky top-0 z-40 block h-16 max-w-full bg-white">
+          <div className="box-border fixed top-0 z-40 block w-full h-16 bg-white">
             <div className="block w-full h-full mx-auto max-w-screen sm:px-6 lg:px-8">
               <div className="relative flex items-center justify-between h-full">
                 <div className="absolute inset-y-0 left-0 flex items-center lg:hidden">

@@ -11,8 +11,14 @@ body {
   height: 100%;
   width: 100%;
   box-sizing: border-box;
+  line-height: 2;
   /* Issues on windows if we do not do this (tmp put in comment because this disables pull to refresh android) */
   /* overflow: hidden; */
   /* -webkit-overflow-scrolling: touch; */
   overscroll-behavior: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
