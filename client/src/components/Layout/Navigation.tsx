@@ -1,21 +1,16 @@
-import { Fragment } from "react";
+import { Fragment, MouseEventHandler } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import Home from "../../pages";
-import NFTsPage from "../../pages/NFTs";
+
 import Link from "next/link";
 import Image from "next/image";
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Collections", href: "#", current: false },
-  { name: "Events", href: "#", current: false },
-  { name: "Contests", href: "#", current: false },
-  { name: "Creator Space", href: "#", current: false },
+  { name: "Home", href: "/" },
+  { name: "Collections", href: "/collections" },
+  { name: "Events", href: "/events" },
+  { name: "Contests", href: "/contests" },
+  { name: "Creator Space", href: "/creator-space" },
 ];
 
 const Navigation: React.FC = () => {
@@ -65,13 +60,9 @@ const Navigation: React.FC = () => {
                           <Link
                             key={item.name}
                             href={item.href}
-                            className={classNames(
-                              item.current
-                                ? "bg-primary text-white"
-                                : "text-primary hover:bg-primary hover:text-white",
-                              "rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
-                            )}
-                            aria-current={item.current ? "page" : undefined}
+                            className={
+                              "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                            }
                           >
                             {item.name}
                           </Link>
@@ -98,13 +89,9 @@ const Navigation: React.FC = () => {
                   key={item.name}
                   as="a"
                   href={item.href}
-                  className={classNames(
-                    item.current
-                      ? "bg-primary text-white"
-                      : "text-primary hover:bg-primary hover:text-white",
-                    "block rounded-md px-3 py-2 text-base font-medium"
-                  )}
-                  aria-current={item.current ? "page" : undefined}
+                  className={
+                    "text-primary hover:bg-primary hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                  }
                 >
                   {item.name}
                 </Disclosure.Button>
