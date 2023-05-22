@@ -16,6 +16,7 @@ module.exports = {
         primary: "#FF004A",
         secondary: "#007d6e",
         focusPrimary: "#FF003A",
+        hoverPrimary: "#FF003E",
       },
     },
   },

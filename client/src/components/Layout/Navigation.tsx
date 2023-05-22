@@ -37,8 +37,8 @@ const Navigation: React.FC = () => {
                     )}
                   </Disclosure.Button>
                 </div>
-                <div className="flex items-center justify-center flex-1 sm:items-center sm:justify-start">
-                  <div className="items-center h-full sm:flex sm:pr-1 lg:pr-1">
+                <div className="flex items-center justify-center flex-1 place-items-center lg:place-items-start lg:justify-start">
+                  <div className="h-full lg:pr-1 lg:justify-items-start ">
                     <Link href="#" className="box-border flex items-center">
                       <div className="box-border relative block h-9 w-9">
                         <div className="box-border absolute inset-0 block overflow-hidden">
@@ -69,7 +69,7 @@ const Navigation: React.FC = () => {
                               item.current
                                 ? "bg-primary text-white"
                                 : "text-primary hover:bg-primary hover:text-white",
-                              "rounded-full px-4 py-1.5 text-md font-medium whitespace-nowrap flex-none"
+                              "rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
                             )}
                             aria-current={item.current ? "page" : undefined}
                           >
@@ -83,7 +83,7 @@ const Navigation: React.FC = () => {
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                   <button
                     type="button"
-                    className="px-4 py-1.5 bg-white rounded-full text-primary hover:text-white hover:bg-primary focus:outline-none focus:ring-0 focus:text-white focus:ring-primary focus:bg-primary active:bg-white active:text-primary"
+                    className="px-4 py-0.5 bg-white rounded-full text-primary hover:text-white hover:bg-primary focus:outline-none focus:ring-0 focus:text-white focus:ring-primary focus:bg-primary active:bg-white active:text-primary"
                   >
                     <span className="">Connect</span>
                   </button>
@@ -91,7 +91,7 @@ const Navigation: React.FC = () => {
               </div>
             </div>
           </div>
-          <Disclosure.Panel className="lg:hidden">
+          <Disclosure.Panel className="box-border fixed left-0 right-0 block w-full mt-2 bg-white top-1 lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navigation.map((item) => (
                 <Disclosure.Button
