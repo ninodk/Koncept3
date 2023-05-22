@@ -18,10 +18,10 @@ const HomePage: React.FC = () => {
           </p>
         </div>
         <div className="flex items-center justify-center space-x-2 sm:justify-end lg:justify-end max-h-fit">
-          <button className="px-2 py-1 text-sm text-white rounded-full sm:text-md sm:px-3 sm:py-1.5 lg:px-4 lg:py-1 bg-slate-800 hover:bg-slate-900">
+          <button className="px-2 py-1 text-sm text-white rounded-full sm:text-md sm:px-3 sm:py-1.5 lg:px-4 lg:py-1 xl:px-4 xl:py-1 xl:text-lg bg-slate-800 hover:bg-slate-900">
             Learn more
           </button>
-          <button className="px-2 py-1 text-sm text-white rounded-full sm:text-md sm:px-3 sm:py-1.5 lg:px-4 lg:py-1 bg-primary hover:bg-hoverPrimary">
+          <button className="px-2 py-1 text-sm text-white rounded-full sm:text-md sm:px-3 sm:py-1.5 lg:px-4 lg:py-1 xl:px-4 xl:py-1 xl:text-lg bg-primary hover:bg-hoverPrimary">
             Get started
           </button>
         </div>
