@@ -5,7 +5,7 @@ import { useState } from "react";
 const testEvents = [
   {
     id: 1,
-    title: "Koncept Partner Party",
+    title: "Koncept3 Partner Party",
     image:
       "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
     description:
@@ -15,11 +15,10 @@ const testEvents = [
   },
   {
     id: 2,
-    title: "Koncept Partner Party",
+    title: "Koncept3 x Adidas",
     image:
       "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
-    description:
-      "A chance to meet our partners. Only available for Koncept3 NFT owners.",
+    description: "Koncept3 x Adidas collaboration.",
     startDate: "26/05",
     endDate: "16/06",
   },
@@ -55,7 +54,7 @@ const EventsPage: React.FC = () => {
                   />
                 )}
               </Link>
-              <div className="pt-2 pb-4 pl-4 pr-4">
+              <div className="relative block h-full pt-2 pb-4 pl-4 pr-4">
                 <Link href={`/events/event/${event.id}}`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {event.title}
@@ -64,15 +63,15 @@ const EventsPage: React.FC = () => {
                 <span className="flex mb-3 font-normal text-slate-400">
                   {event.description}
                 </span>
-                <div className="flex flex-row items-center space-x-2 text-xs">
-                  <span className="w-1/3 px-2 py-3 font-semibold text-center rounded-full bg-hoverPrimary text-slate-100">
+                <div className="flex flex-row justify-between mt-auto space-x-2 text-xs">
+                  <span className="w-1/3 px-2 py-3 font-semibold text-center bg-purple-600 rounded-full text-slate-100">
                     HOLDERS
                   </span>
-                  <span className="w-1/3 px-2 py-3 font-semibold text-center bg-blue-400 rounded-full text-slate-100">
+                  <span className="w-1/3 px-2 py-3 font-semibold text-center rounded-full bg-slate-600 text-slate-100">
                     {event.startDate}
                   </span>
 
-                  <button className="w-1/3 px-2 py-3 font-semibold bg-green-400 rounded-full text-slate-50 hover:bg-slate-600">
+                  <button className="w-1/3 px-2 py-3 font-semibold bg-green-500 rounded-full text-slate-50 hover:bg-slate-600">
                     Enter
                   </button>
                 </div>
