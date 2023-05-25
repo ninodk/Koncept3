@@ -53,7 +53,7 @@ const CreateEvent: React.FC = () => {
           >
             Title
           </label>
-          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-visible:outline-none focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-500 focus-within:ring-2 focus-visible:outline-none focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
             <input
               type="text"
               name="title"
@@ -77,7 +77,7 @@ const CreateEvent: React.FC = () => {
               id="description"
               rows={4}
               autoComplete="description"
-              className="block w-full rounded-md border-0 py-1.5 px-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 px-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-500 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               placeholder="Describe your event"
             />
           </div>
@@ -90,7 +90,7 @@ const CreateEvent: React.FC = () => {
             >
               Start Date
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-visible:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-500 focus-visible:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="datetime-local"
                 name="startdate"
@@ -107,7 +107,7 @@ const CreateEvent: React.FC = () => {
             >
               End Date
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset focus-visible:outline-none ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset focus-visible:outline-none ring-slate-500 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="datetime-local"
                 name="enddate"
