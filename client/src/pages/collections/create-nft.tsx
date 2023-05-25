@@ -61,7 +61,7 @@ const CreateNFT: React.FC = () => {
               name="name"
               id="name"
               autoComplete="name"
-              className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 focus-visible:outline-none placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
+              className="block flex-1 border-0 bg-transparent py-1.5 px-3 text-slate-700 focus-visible:outline-none placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
               placeholder="Koncept Kitten #3"
             />
           </div>
@@ -79,7 +79,7 @@ const CreateNFT: React.FC = () => {
               id="name"
               rows={3}
               autoComplete="name"
-              className="block w-full rounded-md border-0 py-1.5 pl-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 px-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               placeholder="A Kitten That is Just A Koncept"
             />
           </div>
