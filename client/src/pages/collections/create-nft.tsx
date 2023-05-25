@@ -55,14 +55,13 @@ const CreateNFT: React.FC = () => {
           >
             Name
           </label>
-          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
-            {/* <span className="flex items-center pl-3 text-gray-500 select-none sm:text-sm"></span> */}
+          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-visible:outline-none focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
             <input
               type="text"
               name="name"
               id="name"
               autoComplete="name"
-              className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
+              className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 focus-visible:outline-none placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
               placeholder="Koncept Kitten #3"
             />
           </div>
@@ -74,14 +73,13 @@ const CreateNFT: React.FC = () => {
           >
             Description
           </label>
-          <div className="">
-            {/* <span className="flex items-center pl-3 text-gray-500 select-none sm:text-sm"></span> */}
+          <div>
             <textarea
               name="name"
               id="name"
               rows={3}
               autoComplete="name"
-              className="block w-full rounded-md border-0 py-1.5 text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 pl-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               placeholder="A Kitten That is Just A Koncept"
             />
           </div>
@@ -94,13 +92,13 @@ const CreateNFT: React.FC = () => {
             >
               Price
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-visible:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="text"
                 name="price"
                 id="price"
                 autoComplete="price"
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
+                className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 focus-visible:outline-none placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="0.01"
               />
               <span className="flex items-center pr-3 text-gray-500 select-none sm:text-sm">
@@ -115,7 +113,7 @@ const CreateNFT: React.FC = () => {
             >
               Supply
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset focus-visible:outline-none ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="text"
                 name="supply"
@@ -123,7 +121,7 @@ const CreateNFT: React.FC = () => {
                 autoComplete="supply"
                 value={1}
                 disabled
-                className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
+                className="block flex-1 border-0 bg-transparent py-1.5 pl-3 text-slate-700 focus-visible:outline-none placeholder:text-slate-500 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="1"
               />
             </div>
