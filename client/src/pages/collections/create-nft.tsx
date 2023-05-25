@@ -55,7 +55,7 @@ const CreateNFT: React.FC = () => {
           >
             Name
           </label>
-          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-within:ring-2 focus-visible:outline-none focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+          <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-500 focus-within:ring-2 focus-visible:outline-none focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
             <input
               type="text"
               name="name"
@@ -77,9 +77,9 @@ const CreateNFT: React.FC = () => {
             <textarea
               name="name"
               id="name"
-              rows={3}
+              rows={4}
               autoComplete="name"
-              className="block w-full rounded-md border-0 py-1.5 px-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-600 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-1.5 px-3 focus-visible:outline-none text-slate-700 shadow-sm ring-2 ring-inset ring-slate-500 placeholder:text-slate-500 focus:ring-2 focus:ring-inset focus:ring-primary sm:text-sm sm:leading-6"
               placeholder="A Kitten That is Just A Koncept"
             />
           </div>
@@ -92,7 +92,7 @@ const CreateNFT: React.FC = () => {
             >
               Price
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-600 focus-visible:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset ring-slate-500 focus-visible:outline-none focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="text"
                 name="price"
@@ -113,7 +113,7 @@ const CreateNFT: React.FC = () => {
             >
               Supply
             </label>
-            <div className="flex rounded-md shadow-sm ring-2 ring-inset focus-visible:outline-none ring-slate-600 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
+            <div className="flex rounded-md shadow-sm ring-2 ring-inset focus-visible:outline-none ring-slate-500 focus-within:ring-2 focus-within:ring-inset focus-within:ring-primary sm:max-w-full">
               <input
                 type="text"
                 name="supply"
@@ -139,7 +139,7 @@ const CreateNFT: React.FC = () => {
           type="submit"
           className="px-3 py-2 text-sm font-semibold text-white rounded-full shadow-sm bg-primary hover:bg-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
         >
-          Save
+          Create
         </button>
       </div>
     </div>
