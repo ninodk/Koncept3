@@ -1,27 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
+import { testEvents } from "../../utility/data/testData";
 
-/// Testdata
-const testEvents = [
-  {
-    id: 1,
-    title: "Koncept3 Partner Party",
-    image: `/billboard.png`,
-    description:
-      "A chance to meet our partners. Only available for Koncept3 NFT owners.",
-    startDate: "26/05",
-    endDate: "16/06",
-  },
-  {
-    id: 2,
-    title: "Koncept3 x Adidas",
-    image: `/billboard.png`,
-    description:
-      "Koncept3 x Adidas collaboration. Get a chance to meet our partners from adidas and earn an exclusive item!",
-    startDate: "26/05",
-    endDate: "16/06",
-  },
-];
 const EventsPage: React.FC = () => {
   const [events, setEvents] = useState(testEvents);
   return (
@@ -29,7 +9,7 @@ const EventsPage: React.FC = () => {
       <div className="flex justify-start">
         <Link
           href="/events/create-event"
-          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-hoverPrimary"
+          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
         >
           Create Event
         </Link>
@@ -44,7 +24,7 @@ const EventsPage: React.FC = () => {
               key={event.id}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link href={`/events/event/${event.id}}`} className="">
+              <Link href={`/events/event/${event.id}`} className="">
                 {event.image && (
                   <img
                     className="p-3 rounded-3xl"
@@ -54,7 +34,7 @@ const EventsPage: React.FC = () => {
                 )}
               </Link>
               <div className="relative block h-full pt-2 pb-4 pl-4 pr-4">
-                <Link href={`/events/event/${event.id}}`}>
+                <Link href={`/events/event/${event.id}`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {event.title}
                   </span>

@@ -1,29 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
+import { testContests } from "../../utility/data/testData";
 
-/// Testdata
-const testContests = [
-  {
-    id: 1,
-    title: "Logo Contest",
-    image: `/billboard.png`,
-    description:
-      "We need a new logo. Let your creative juices flow. The winner gets an exclusive brand NFT!",
-    startDate: "26/05",
-    endDate: "16/06",
-    reward: "NFT",
-  },
-  {
-    id: 2,
-    title: "Ad This Product!",
-    image: `/billboard.png`,
-    description:
-      "We need like some ideas to promote this product. Help us, earn some tokens.",
-    startDate: "26/05",
-    endDate: "16/06",
-    reward: "Tokens",
-  },
-];
 const ContestsPage: React.FC = () => {
   const [contests, setContests] = useState(testContests);
   return (
@@ -31,7 +9,7 @@ const ContestsPage: React.FC = () => {
       <div className="flex justify-start">
         <Link
           href="/contests/create-contest"
-          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-hoverPrimary"
+          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
         >
           Create Contest
         </Link>
@@ -46,7 +24,7 @@ const ContestsPage: React.FC = () => {
               key={contest.id}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link href={`/contests/contest/${contest.id}}`} className="">
+              <Link href={`/contests/contest/${contest.id}`} className="">
                 {contest.image && (
                   <img
                     className="p-3 rounded-3xl"
@@ -56,7 +34,7 @@ const ContestsPage: React.FC = () => {
                 )}
               </Link>
               <div className="pt-2 pb-4 pl-4 pr-4">
-                <Link href={`/contests/contest/${contest.id}}`}>
+                <Link href={`/contests/contest/${contest.id}`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {contest.title}
                   </span>

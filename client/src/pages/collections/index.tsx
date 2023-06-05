@@ -1,49 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
-
+import { testNFTs } from "../../utility/data/testData";
 /// Testdata
-const testNFTs = [
-  {
-    id: 1,
-    name: "Koncept Kick #1",
-    image: `/Koncept1.png`,
-    description: "Not just a shoe",
-    price: 15.8,
-    supply: 1,
-  },
-  {
-    id: 2,
-    name: "Koncept Kick #2",
-    image: `/Koncept2.png`,
-    description: "Not just a shoe",
-    price: 12.1,
-    supply: 1,
-  },
-  {
-    id: 3,
-    name: "Koncept Kick #3",
-    image: `/Koncept3.png`,
-    description: "Not just a shoe",
-    price: 8.3,
-    supply: 1,
-  },
-  {
-    id: 4,
-    name: "Koncept Kick #4",
-    image: `/Koncept4.png`,
-    description: "Not just a shoe",
-    price: 20,
-    supply: 1,
-  },
-  {
-    id: 4,
-    name: "Koncept Kick #5",
-    image: `/Koncept1.png`,
-    description: "Not just a shoe",
-    price: 19,
-    supply: 1,
-  },
-];
+
 const CollectionsPage: React.FC = () => {
   const [NFTs, setNFTs] = useState(testNFTs);
   return (
@@ -66,7 +25,7 @@ const CollectionsPage: React.FC = () => {
               key={nft.id}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link href={`/collections/NFT/${nft.id}}`} className="">
+              <Link href={`/collections/NFT/${nft.id}`} className="">
                 {nft.image && (
                   <img
                     className="p-3 rounded-3xl"
@@ -76,7 +35,7 @@ const CollectionsPage: React.FC = () => {
                 )}
               </Link>
               <div className="pt-2 pb-4 pl-4 pr-4">
-                <Link href={`/collections/NFT/${nft.id}}`}>
+                <Link href={`/collections/NFT/${nft.id}`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {nft.name}
                   </span>
