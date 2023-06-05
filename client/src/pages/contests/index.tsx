@@ -6,8 +6,7 @@ const testContests = [
   {
     id: 1,
     title: "Logo Contest",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
+    image: `/billboard.png`,
     description:
       "We need a new logo. Let your creative juices flow. The winner gets an exclusive brand NFT!",
     startDate: "26/05",
@@ -17,8 +16,7 @@ const testContests = [
   {
     id: 2,
     title: "Ad This Product!",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
+    image: `/billboard.png`,
     description:
       "We need like some ideas to promote this product. Help us, earn some tokens.",
     startDate: "26/05",

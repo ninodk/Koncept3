@@ -6,8 +6,7 @@ const testNFTs = [
   {
     id: 1,
     name: "Koncept Kick #1",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
+    image: `/Koncept1.png`,
     description: "Not just a shoe",
     price: 15.8,
     supply: 1,
@@ -15,8 +14,7 @@ const testNFTs = [
   {
     id: 2,
     name: "Koncept Kick #2",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/1b473ffc42c0eb3ae917f4eee14af1df.png",
+    image: `/Koncept2.png`,
     description: "Not just a shoe",
     price: 12.1,
     supply: 1,
@@ -24,8 +22,7 @@ const testNFTs = [
   {
     id: 3,
     name: "Koncept Kick #3",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/c26c531d6648586313a279e7e621130d.png",
+    image: `/Koncept3.png`,
     description: "Not just a shoe",
     price: 8.3,
     supply: 1,
@@ -33,8 +30,7 @@ const testNFTs = [
   {
     id: 4,
     name: "Koncept Kick #4",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cc87d8b403c9517302b52975d69ccf1e.png",
+    image: `/Koncept4.png`,
     description: "Not just a shoe",
     price: 20,
     supply: 1,
@@ -42,8 +38,7 @@ const testNFTs = [
   {
     id: 4,
     name: "Koncept Kick #5",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/a5cc2df9dffcdfff053cda0d92a76780.png",
+    image: `/Koncept1.png`,
     description: "Not just a shoe",
     price: 19,
     supply: 1,

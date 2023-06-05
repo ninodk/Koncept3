@@ -6,8 +6,7 @@ const testEvents = [
   {
     id: 1,
     title: "Koncept3 Partner Party",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
+    image: `/billboard.png`,
     description:
       "A chance to meet our partners. Only available for Koncept3 NFT owners.",
     startDate: "26/05",
@@ -16,9 +15,9 @@ const testEvents = [
   {
     id: 2,
     title: "Koncept3 x Adidas",
-    image:
-      "https://dl.openseauserdata.com/cache/originImage/files/cbdde07d17fd673f2d9e9ed69a9cc735.png",
-    description: "Koncept3 x Adidas collaboration.",
+    image: `/billboard.png`,
+    description:
+      "Koncept3 x Adidas collaboration. Get a chance to meet our partners from adidas and earn an exclusive item!",
     startDate: "26/05",
     endDate: "16/06",
   },
