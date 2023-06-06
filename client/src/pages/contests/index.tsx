@@ -50,7 +50,7 @@ const ContestsPage: React.FC = () => {
                     {contest.startDate}
                   </span>
 
-                  <button className="w-1/3 px-2 py-3 font-semibold bg-green-500 rounded-full text-slate-50 hover:bg-slate-600">
+                  <button className="w-1/3 px-2 py-3 font-semibold rounded-full bg-primary text-slate-50 hover:bg-slate-600">
                     Enter
                   </button>
                 </div>
