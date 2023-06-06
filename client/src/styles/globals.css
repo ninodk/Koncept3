@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: "Poppins", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  line-height: 2;
+  /* Issues on windows if we do not do this (tmp put in comment because this disables pull to refresh android) */
+  /* overflow: hidden; */
+  /* -webkit-overflow-scrolling: touch; */
+  overscroll-behavior: none;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
