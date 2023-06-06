@@ -32,9 +32,16 @@ const SingleNFT: React.FC<NFTProps> = ({ id }: { id: string }) => {
                   alt="NFT Image"
                 ></Image>
               </div>
-              <div className="relative w-1/2 mt-5 mb-5 mr-5 overflow-hidden max-w-1/2">
-                <div className="text-3xl font-semibold text-slate-800">
-                  {NFT.name}
+              <div className="flex flex-col w-1/2 mt-5 mb-5 mr-5 overflow-hidden max-w-1/2">
+                <div className="flex flex-row justify-between">
+                  <div className="text-3xl font-semibold text-slate-800">
+                    {NFT.name}
+                  </div>
+                  <div className="flex place-content-end">
+                    <button className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-900">
+                      Buy
+                    </button>
+                  </div>
                 </div>
                 <div className="flex flex-row">
                   <p className="text-slate-900">
@@ -58,11 +65,6 @@ const SingleNFT: React.FC<NFTProps> = ({ id }: { id: string }) => {
                   <p className="text-xl font-medium tracking-wide uppercase text-primary">
                     <span>{NFT.price} MATIC</span>
                   </p>
-                  <div className="flex place-content-end">
-                    <button className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-900">
-                      Buy
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
