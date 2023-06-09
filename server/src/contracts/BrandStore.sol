@@ -92,7 +92,7 @@ contract BrandStore is ReentrancyGuard {
   function getListingPrice() public view returns (uint256) {
     return listingPrice;
   }
-  
+
   /**
    * @notice Creates and sets a brand item up for sale.
    * @dev Creates and sets a brand item up for sale.
@@ -147,7 +147,7 @@ contract BrandStore is ReentrancyGuard {
   /**
    * 
    * @param brandNFTContract contract address of the deployed BrandNFT.sol Smart Contract
-   * @param itemId unique identifier of the brand item being created and put for salle
+   * @param itemId unique identifier of the brand item being created and put for sale
    */
   function createMarketSale(address brandNFTContract, uint256 itemId) public payable nonReentrant {
     uint price = idToBrandItem[itemId].price;

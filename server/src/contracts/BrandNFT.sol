@@ -26,7 +26,7 @@ contract BrandNFT is ERC721URIStorage {
    * The contract name is set as "Koncept Brand Tokens" with the symbol "KBT".
    * @param marketAddress The address of the brand associated with the NFTs.
    */
-  constructor(address marketAddress) ERC721("Koncept Brand Tokens", "KBT"){
+  constructor(address marketAddress) ERC721("Koncept Brand NFT", "KBN"){
     contractAddress = marketAddress;
   }
   /**
