@@ -2,7 +2,7 @@ import { expect } from "chai";
 import { ethers } from "hardhat";
 import { BrandNFT, BrandStore } from "../typechain-types";
 
-describe("NFTMarket", async function () {
+describe("BrandStore", async function () {
   it("Should create and execute store sales", async function () {
     let brandStore: BrandStore;
     const signers = await ethers.getSigners();
