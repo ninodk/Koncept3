@@ -242,7 +242,7 @@ contract BrandContest is Ownable {
   }
   /**
    * @dev Gets the list of contests that have ended.
-   * @return An array of Contest structs representing the ended contests.
+   * @return An array of events (struct) representing the ended contests.
    */
   function fetchContestsEnded() public view returns (Contest[] memory){
     uint256 count = 0;
@@ -262,7 +262,7 @@ contract BrandContest is Ownable {
     return contestsEnded;
   }
   /**
-   * @dev Gets the list of addresses attended by a contest.
+   * @dev Gets the list of addresses attended of a contest.
    * @param contestId The unique identifier of the constest.
    * @return An array of addresses attended by a contest.
    */
