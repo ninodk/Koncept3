@@ -16,7 +16,7 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 /**
  * @title Brand Store Smart Contract
  * @author Nino De Kerpel
- * @notice Smart Contract for managing the digital store of the brand.
+ * @notice A Smart Contract for managing the digital store of the brand.
  * @dev A Smart Contract for buying,selling and fetching brand items in its digital store.
  */
 contract BrandStore is ReentrancyGuard {
@@ -37,7 +37,7 @@ contract BrandStore is ReentrancyGuard {
   uint256 listingPrice = 0.025 ether; // equal to 0.0250000000000000
 
   /**
-   * @notice Deploying the contract
+   * @notice Contract constructor for deployment
    * @dev Deploying the contract with the address of this contract
    * The owner of this contract is the brand deploying it
    */
@@ -46,8 +46,8 @@ contract BrandStore is ReentrancyGuard {
   }
   
   /**
-   * @notice Creating a Brand Item Object 
-   * @dev A struct is an object or a map
+   * @notice A struct is an object that has properties and defines the shape of a Brand Item.
+   * @dev Creating a Brand Contest Object / Map
    */
   struct BrandItem {
     uint itemId;
@@ -58,20 +58,20 @@ contract BrandStore is ReentrancyGuard {
     uint256 price;
     bool sold;
   }
-  // Mapping over our brand items to keep up with all the items that have been created
-  //  In order to fetch each brand item we need to know its unique identifier
+  // Mapping over brand items to keep up with all the items that have been created
+  //  In order to fetch a brand item we need to know and pass its unique identifier
   mapping(uint256 => BrandItem) private idToBrandItem;
 
   /**
    * @notice An Event for when a brand item gets created
    * @dev This event gets triggered when a brand item gets created and can be used in the client application
-   * @param itemId unique identifier of the brand item
-   * @param brandNFTContract contract address of the brand NFT
-   * @param tokenId unique identifier of the brand token
-   * @param seller address of the one who is selling the brand item
-   * @param owner address of the one who owns the brand item
-   * @param price price of the brand item
-   * @param sold boolean indicates true/false wether the brand item has been sold
+   * @param itemId The unique identifier of the brand item.
+   * @param brandNFTContract The contract address of the brand NFT. 
+   * @param tokenId The unique identifier of the brand token.
+   * @param seller The address of the seller of the brand item.
+   * @param owner The address of the owner of the brand item.
+   * @param price The price of the brand item in ether.
+   * @param sold A boolean indicates true/false wether the brand item has been sold.
    */
   event BrandItemCreated (
     uint indexed itemId,
@@ -132,7 +132,9 @@ contract BrandStore is ReentrancyGuard {
     //  This contract is going to transfer the ownership to the next buyer
     IERC721(brandNFTContract).transferFrom(msg.sender, address(this), tokenId);
 
-    // Emit the Event BrandItemCreated
+    /**
+     * @dev Firing of the event that can be picked up by the client application
+     */
     emit BrandItemCreated(
       itemId, 
       brandNFTContract, 
