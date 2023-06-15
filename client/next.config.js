@@ -7,6 +7,20 @@ const nextConfig = {
     INFURA_API_KEY: process.env.INFURA_API_KEY,
     NEXT_PUBLIC_ENVIRONMENT: process.env.NEXT_PUBLIC_ENVIRONMENT,
   },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          fs: false,
+          net: false,
+          dns: false,
+          tls: false,
+        },
+      };
+    }
+    return config;
+  },
 };
 
 module.exports = nextConfig;
