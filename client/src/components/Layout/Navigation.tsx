@@ -4,6 +4,9 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import Link from "next/link";
 import Image from "next/image";
+import Web3ModalButton from "../WalletConnect/Web3ModalButton";
+import { useAccount } from "wagmi";
+import { ownerAddress } from "../../../../server/src/configurations/config";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -14,6 +17,14 @@ const navigation = [
 ];
 
 const Navigation: React.FC = () => {
+  const account = useAccount({
+    onConnect({ address, connector, isReconnected }) {
+      console.log("Connected", { address, connector, isReconnected });
+    },
+    onDisconnect() {
+      console.log("Disconnected");
+    },
+  });
   return (
     <Disclosure as="nav" className="">
       {({ open }) => (
@@ -56,7 +67,7 @@ const Navigation: React.FC = () => {
                   <div className="relative hidden overflow-auto lg:ml-6 lg:block">
                     <div className="min-w-0 mx-auto max-w-fit lg:max-w-full lg:min-w-full">
                       <div className="flex space-x-4 overflow-x-auto justify-self-center">
-                        {navigation.map((item) => (
+                        {/* {navigation.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
@@ -66,18 +77,61 @@ const Navigation: React.FC = () => {
                           >
                             {item.name}
                           </Link>
-                        ))}
+                        ))} */}
+                        <Link
+                          href="/"
+                          className={
+                            "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                          }
+                        >
+                          Home
+                        </Link>
+                        <Link
+                          href="/collections"
+                          className={
+                            "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                          }
+                        >
+                          Collections
+                        </Link>
+                        <Link
+                          href="/events"
+                          className={
+                            "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                          }
+                        >
+                          Events
+                        </Link>
+                        <Link
+                          href="/contests"
+                          className={
+                            "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                          }
+                        >
+                          Contests
+                        </Link>
+                        {account.address === ownerAddress && (
+                          <Link
+                            href="/creator-space"
+                            className={
+                              "text-primary hover:bg-primary hover:text-white rounded-full px-4 py-0.5 text-md font-medium whitespace-nowrap flex-none"
+                            }
+                          >
+                            Creator Space
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  <button
+                  {/* <button
                     type="button"
                     className="px-4 py-0.5 bg-white rounded-full text-primary hover:text-white hover:bg-primary focus:outline-none focus:ring-0 focus:text-white focus:ring-primary focus:bg-primary active:bg-white active:text-primary"
                   >
                     <span className="">Connect</span>
-                  </button>
+                  </button> */}
+                  <Web3ModalButton></Web3ModalButton>
                 </div>
               </div>
             </div>

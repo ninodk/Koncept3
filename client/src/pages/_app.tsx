@@ -32,6 +32,7 @@ if (!process.env.INFURA_API_KEY) {
   throw new Error("You need to provide a projectId");
 }
 const projectId = process.env.INFURA_API_KEY;
+console.log(projectId);
 
 // 2. Configure wagmi client
 const { chains, publicClient } = configureChains(
@@ -40,7 +41,7 @@ const { chains, publicClient } = configureChains(
 );
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, version: 2, chains }),
+  connectors: w3mConnectors({ projectId, version: 1, chains }),
   publicClient,
 });
 
@@ -56,15 +57,13 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setReady(true);
   }, []);
+
   return (
     <div className="w-full h-full overflow-hidden">
       <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       {ready ? (
         <WagmiConfig config={wagmiConfig}>
           <PageLayout>
-            <div className="flex justify-end flex-1">
-              <Web3ModalButton />
-            </div>
             <Component {...pageProps} />
           </PageLayout>
         </WagmiConfig>
