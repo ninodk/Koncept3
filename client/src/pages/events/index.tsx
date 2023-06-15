@@ -1,18 +1,24 @@
 import Link from "next/link";
 import { useState } from "react";
 import { testEvents } from "../../utility/data/testData";
+import { ownerAddress } from "../../../../server/src/configurations/config";
+import { useAccount } from "wagmi";
 
 const EventsPage: React.FC = () => {
+  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+
   const [events, setEvents] = useState(testEvents);
   return (
     <div className="w-full max-h-screen">
       <div className="flex justify-start">
-        <Link
-          href="/events/create-event"
-          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
-        >
-          Create Event
-        </Link>
+        {address === ownerAddress && (
+          <Link
+            href="/events/create-event"
+            className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
+          >
+            Create Event
+          </Link>
+        )}
       </div>
       <span className="relative block mt-4 text-2xl text-slate-800">
         Upcoming Events
