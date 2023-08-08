@@ -1,19 +1,25 @@
 import Link from "next/link";
 import { useState } from "react";
 import { testNFTs } from "../../utility/data/testData";
+import { useAccount } from "wagmi";
+import { ownerAddress } from "../../../../server/src/configurations/config";
 /// Testdata
 
 const CollectionsPage: React.FC = () => {
+  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+
   const [NFTs, setNFTs] = useState(testNFTs);
   return (
     <div className="w-full max-h-screen">
       <div className="flex justify-start">
-        <Link
-          href="/collections/create-nft"
-          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
-        >
-          Create NFT
-        </Link>
+        {address === ownerAddress && (
+          <Link
+            href="/collections/create-nft"
+            className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
+          >
+            Create NFT
+          </Link>
+        )}
       </div>
       <span className="relative block mt-4 text-2xl text-slate-800">
         Now Listed

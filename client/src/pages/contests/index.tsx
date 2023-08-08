@@ -1,18 +1,24 @@
 import Link from "next/link";
 import { useState } from "react";
 import { testContests } from "../../utility/data/testData";
+import { ownerAddress } from "../../../../server/src/configurations/config";
+import { useAccount } from "wagmi";
 
 const ContestsPage: React.FC = () => {
+  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+
   const [contests, setContests] = useState(testContests);
   return (
     <div className="w-full max-h-screen">
       <div className="flex justify-start">
-        <Link
-          href="/contests/create-contest"
-          className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
-        >
-          Create Contest
-        </Link>
+        {address === ownerAddress && (
+          <Link
+            href="/contests/create-contest"
+            className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
+          >
+            Create Contest
+          </Link>
+        )}
       </div>
       <span className="relative block mt-4 text-2xl text-slate-800">
         Now Listed

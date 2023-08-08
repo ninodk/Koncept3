@@ -44,7 +44,7 @@ export const testEvents = [
   {
     id: 1,
     title: "Koncept3 Partner Party",
-    image: `/billboard.png`,
+    image: `/nike-cacti.png`,
     description:
       "A chance to meet our partners. Only available for Koncept3 NFT owners.",
     startDate: "26/05",
@@ -53,7 +53,7 @@ export const testEvents = [
   {
     id: 2,
     title: "Koncept3 x Adidas",
-    image: `/billboard.png`,
+    image: `/nike-cacti.png`,
     description:
       "Koncept3 x Adidas collaboration. Get a chance to meet our partners from adidas and earn an exclusive item!",
     startDate: "26/05",
@@ -64,7 +64,7 @@ export const testContests = [
   {
     id: 1,
     title: "Logo Contest",
-    image: `/billboard.png`,
+    image: `/we-need-a-new-logo.png`,
     description:
       "We need a new logo. Let your creative juices flow. The winner gets an exclusive brand NFT!",
     startDate: "26/05",
