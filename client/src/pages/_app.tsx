@@ -6,7 +6,11 @@ import { useEffect, useState } from "react";
 import { ownerAddress } from "../../../server/src/configurations/config";
 
 /* Web3Modal Imports */
-import { EthereumClient, w3mConnectors } from "@web3modal/ethereum";
+import {
+  EthereumClient,
+  w3mConnectors,
+  w3mProvider,
+} from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
 /* Wagmi Imports */
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -21,27 +25,26 @@ import {
 import { useAccount } from "wagmi";
 
 //  RPC Providers
-import { infuraProvider } from "wagmi/providers/infura";
-import { publicProvider } from "wagmi/providers/public";
+//import { infuraProvider } from "wagmi/providers/infura";
+//import { publicProvider } from "wagmi/providers/public";
 import Web3ModalButton from "../components/WalletConnect/Web3ModalButton";
+
+const chains = [mainnet, polygon, polygonMumbai, hardhat, localhost];
 
 // 1. Get projectID
 //  at https://cloud.walletconnect.com
 //  or at other RPCs like Infura
-if (!process.env.INFURA_API_KEY) {
+if (!process.env.WALLET_CONNECT_PROJECT_ID) {
   throw new Error("You need to provide a projectId");
 }
-const projectId = process.env.INFURA_API_KEY;
-console.log(projectId);
+const projectId = process.env.WALLET_CONNECT_PROJECT_ID;
+console.log("project id from wallet connect: ", projectId);
 
 // 2. Configure wagmi client
-const { chains, publicClient } = configureChains(
-  [mainnet, polygon, polygonMumbai, hardhat, localhost],
-  [infuraProvider({ apiKey: projectId }), publicProvider()]
-);
+const { publicClient } = configureChains(chains, [w3mProvider({ projectId })]);
 const wagmiConfig = createConfig({
   autoConnect: true,
-  connectors: w3mConnectors({ projectId, version: 1, chains }),
+  connectors: w3mConnectors({ projectId, chains }),
   publicClient,
 });
 
@@ -52,7 +55,7 @@ const ethereumClient = new EthereumClient(wagmiConfig, chains);
 function MyApp({ Component, pageProps }: AppProps) {
   const [ready, setReady] = useState(false);
 
-  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+  //const { address, isConnecting, isConnected, isDisconnected } = useAccount();
 
   useEffect(() => {
     setReady(true);
@@ -60,7 +63,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div className="w-full h-full overflow-hidden">
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
       {ready ? (
         <WagmiConfig config={wagmiConfig}>
           <PageLayout>
@@ -68,6 +70,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </PageLayout>
         </WagmiConfig>
       ) : null}
+      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
     </div>
   );
 }
