@@ -29,6 +29,9 @@ contract BrandNFT is ERC721URIStorage {
   constructor(address marketAddress) ERC721("Koncept Brand NFT", "KBN"){
     contractAddress = marketAddress;
   }
+  event BrandNFTCreated (
+    uint256 indexed tokenId
+  );
   /**
    * @notice Creates a NFT
    * @dev Creates and mints a new NFT with a given tokenURI.
@@ -57,6 +60,9 @@ contract BrandNFT is ERC721URIStorage {
      */
     setApprovalForAll(contractAddress, true);
     
+    emit BrandNFTCreated (
+      newItemId
+    );
   }
 
 }
