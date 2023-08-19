@@ -4,6 +4,11 @@ import { useAccount } from "wagmi";
 
 const CreateNFT: React.FC = () => {
   const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+  const unwatch = publicClient.watchEvent({
+    address: NftContractAddress,
+    event: BrandNFTCreatedEvent,
+    onLogs: (logs) => createBrandItem(logs[0].args.tokenId),
+  });
   return (
     <>
       {isConnected && address === ownerAddress ? (
