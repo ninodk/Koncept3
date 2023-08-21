@@ -1,18 +1,90 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { testNFTs } from "../../utility/data/testData";
 import { useAccount } from "wagmi";
-import { ownerAddress } from "../../../../server/src/configurations/config";
-/// Testdata
+import {
+  NftContractAddress,
+  ownerAddress,
+  storeContractAddress,
+} from "../../../../server/src/configurations/config";
+import { createWalletClient, custom, formatEther } from "viem";
+import { polygonMumbai } from "viem/chains";
+import publicClient from "../../utility/viem/client";
+// ABIs
+import BrandNFTArtifact from "../../../../server/src/artifacts/contracts/BrandNFT.sol/BrandNFT.json";
+import BrandStoreArtifact from "../../../../server/src/artifacts/contracts/BrandStore.sol/BrandStore.json";
+const ipfsUrl = process.env.INFURA_IPFS_URL;
 
 const CollectionsPage: React.FC = () => {
-  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
+  const account = useAccount({
+    onConnect({ address, connector, isReconnected }) {
+      console.log("Connected", { address, connector, isReconnected });
+    },
+    onDisconnect() {
+      console.log("Disconnected");
+    },
+  });
 
-  const [NFTs, setNFTs] = useState(testNFTs);
+  const [NFTs, setNFTs] = useState([]);
+  const [loadingState, setLoadingState] = useState("not-loaded");
+
+  useEffect(() => {
+    loadNFTs();
+  }, []);
+
+  const loadNFTs = async () => {
+    if (account && account.isConnected && account.address === ownerAddress) {
+      const [account] = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      const walletClient = createWalletClient({
+        account,
+        chain: polygonMumbai,
+        transport: custom(window.ethereum),
+      });
+
+      const data = await publicClient.readContract({
+        address: storeContractAddress,
+        abi: BrandStoreArtifact.abi,
+        functionName: "fetchBrandItems",
+      });
+
+      const items = await Promise.all(
+        data.map(async (i) => {
+          const tokenURI = await publicClient.readContract({
+            address: NftContractAddress,
+            abi: BrandNFTArtifact.abi,
+            functionName: "tokenURI",
+            args: [i.tokenId],
+          });
+
+          //const meta = await axios.get(tokenURI);
+          const metaUrl = `${ipfsUrl}${tokenURI}`;
+          const response = await fetch(metaUrl);
+          const meta = await response.json();
+
+          const price = formatEther(i.price);
+          let image = (meta.image = `${ipfsUrl}${meta.image}`);
+          let item = {
+            price,
+            tokenId: i.tokenId,
+            seller: i.seller,
+            owner: i.owner,
+            image: meta.image,
+            name: meta.name,
+            description: meta.description,
+          };
+          return item;
+        })
+      );
+      setNFTs(items);
+      setLoadingState("loaded");
+    }
+  };
   return (
     <div className="w-full max-h-screen">
       <div className="flex justify-start">
-        {address === ownerAddress && (
+        {account.address === ownerAddress && (
           <Link
             href="/collections/create-nft"
             className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-800"
@@ -68,4 +140,5 @@ const CollectionsPage: React.FC = () => {
     </div>
   );
 };
+
 export default CollectionsPage;
