@@ -65,14 +65,16 @@ const CollectionsPage: React.FC = () => {
 
           const price = formatEther(i.price);
           let image = (meta.image = `${ipfsUrl}${meta.image}`);
+
           let item = {
             price,
-            tokenId: i.tokenId,
-            seller: i.seller,
-            owner: i.owner,
+            tokenId: i.tokenId.toString(),
+            seller: i.seller.toString(),
+            owner: i.owner.toString(),
             image: meta.image,
             name: meta.name,
             description: meta.description,
+            contentHash: tokenURI,
           };
           return item;
         })
@@ -103,7 +105,7 @@ const CollectionsPage: React.FC = () => {
               key={nft.id}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link href={`/collections/NFT/${nft.id}`} className="">
+              <Link href={`/collections/NFT/${nft.contentHash}`} key={nft.id}>
                 {nft.image && (
                   <img
                     className="p-3 rounded-3xl"
