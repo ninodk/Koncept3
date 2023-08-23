@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { testNFTs } from "../../utility/data/testData";
 import { useAccount } from "wagmi";
 import {
@@ -7,7 +7,15 @@ import {
   ownerAddress,
   storeContractAddress,
 } from "../../../../server/src/configurations/config";
-import { createWalletClient, custom, formatEther } from "viem";
+import {
+  BaseError,
+  ContractFunctionRevertedError,
+  createWalletClient,
+  custom,
+  formatEther,
+  parseEther,
+  parseUnits,
+} from "viem";
 import { polygonMumbai } from "viem/chains";
 import publicClient from "../../utility/viem/client";
 // ABIs
@@ -66,12 +74,57 @@ const CollectionsPage: React.FC = () => {
           name: meta.name,
           description: meta.description,
           contentHash: tokenURI,
+          contractPrice: i.price,
         };
         return item;
       })
     );
     setNFTs(items);
     setLoadingState("loaded");
+  };
+
+  const buyNFT = async (nft: NFTProps) => {
+    if (account && account.isConnected) {
+      const walletClient = createWalletClient({
+        account: account.address,
+        chain: polygonMumbai,
+        transport: custom(window.ethereum),
+      });
+
+      try {
+        const { request } = await publicClient.simulateContract({
+          address: storeContractAddress,
+          abi: BrandStoreArtifact.abi,
+          functionName: "createMarketSale",
+          args: [NftContractAddress, nft.tokenId],
+          value: nft.contractPrice,
+          account: account.address,
+          chain: polygonMumbai,
+        });
+        console.log("request buy NFT: ", request);
+
+        const txHash = await walletClient.writeContract(request);
+        console.log(
+          `transaction hash of buying the nft with token id ${nft.tokenId}: ${txHash}`
+        );
+
+        const confirmations = await publicClient.getTransactionConfirmations({
+          hash: txHash,
+        });
+        loadNFTs();
+      } catch (err) {
+        if (err instanceof BaseError) {
+          const revertError = err.walk(
+            (err) => err instanceof ContractFunctionRevertedError
+          );
+          if (revertError instanceof ContractFunctionRevertedError) {
+            const errorName = revertError.data?.errorName ?? "";
+            console.log(errorName);
+          }
+        }
+        console.log(err);
+      }
+    }
   };
   return (
     <div className="w-full max-h-screen">
@@ -118,7 +171,10 @@ const CollectionsPage: React.FC = () => {
                 </span>
 
                 <div className="flex flex-row justify-between">
-                  <button className="justify-self-end px-3 py-0.5 text-white rounded-full bg-primary hover:bg-slate-600">
+                  <button
+                    className="justify-self-end px-3 py-0.5 text-white rounded-full bg-primary hover:bg-slate-600"
+                    onClick={() => buyNFT(nft)}
+                  >
                     Buy
                   </button>
                   <span className="font-semibold justify-self-start text-slate-100">

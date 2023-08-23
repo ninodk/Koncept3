@@ -33,7 +33,7 @@ const Created: React.FC = ({ children }: { children: React.ReactNode }) => {
     loadCreatedNFTs();
   });
   const loadCreatedNFTs = async () => {
-    if (account && account.isConnected && account.address === ownerAddress) {
+    if (account && account.isConnected) {
       const data = await publicClient.readContract({
         address: storeContractAddress,
         abi: BrandStoreArtifact.abi,

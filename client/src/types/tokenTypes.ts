@@ -7,4 +7,5 @@ export interface NFTProps {
   seller: string;
   owner: string;
   price: string;
+  contractPrice?: any;
 }
