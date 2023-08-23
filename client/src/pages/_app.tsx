@@ -70,7 +70,17 @@ function MyApp({ Component, pageProps }: AppProps) {
           </PageLayout>
         </WagmiConfig>
       ) : null}
-      <Web3Modal projectId={projectId} ethereumClient={ethereumClient} />
+      <Web3Modal
+        projectId={projectId}
+        ethereumClient={ethereumClient}
+        themeMode="dark"
+        themeVariables={{
+          "--w3m-font-family": "Poppins, sans-serif",
+          "--w3m-accent-color": "#FF004A",
+          "--w3m-background-color": "#FF004A",
+          "--w3m-accent-fill-color": "#FFF",
+        }}
+      />
     </div>
   );
 }

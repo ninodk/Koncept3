@@ -2,19 +2,38 @@ import Link from "next/link";
 import Created from "./created";
 import { useAccount } from "wagmi";
 import { ownerAddress } from "../../../../server/src/configurations/config";
+import Collected from "./collected";
+import { useState } from "react";
+import classNames from "classnames";
 
 const CreatorSpacePage: React.FC = () => {
-  const { address, isConnecting, isConnected, isDisconnected } = useAccount();
-
+  const [collectedPanel, setCollectedPanel] = useState(true);
+  const [createdPanel, setCreatedPanel] = useState(false);
+  const account = useAccount({
+    onConnect({ address, connector, isReconnected }) {
+      console.log("Connected", { address, connector, isReconnected });
+    },
+    onDisconnect() {
+      console.log("Disconnected");
+    },
+  });
+  const showCollectionPanel = () => {
+    setCollectedPanel(true);
+    setCreatedPanel(false);
+  };
+  const showCreatedPanel = () => {
+    setCollectedPanel(false);
+    setCreatedPanel(true);
+  };
   return (
     <>
-      {isConnected && address === ownerAddress ? (
+      {account.isConnected ? (
         <div className="w-screen h-full">
           <div className="flex flex-col mx-12 mt-16 space-y-6">
             <div className="rounded-md w-60 h-60 bg-primary"></div>
             <div className="flex w-full h-12 bg-white">
               <span className="mt-2 text-3xl font-bold text-slate-700">
-                Koncept3
+                {account.address}
               </span>
             </div>
             <div className="h-1/2">
@@ -22,17 +41,25 @@ const CreatorSpacePage: React.FC = () => {
                 <ul className="flex flex-wrap -mb-px">
                   <li className="mr-2">
                     <Link
-                      href="/creator-space/"
-                      className="block pt-4 pb-4 pr-4 rounded-t-lg active:border-b-2 active:border-primary hover:border-b-2 hover:border-primary hover:text-primary active:text-primary"
+                      href={`creator-space`}
+                      onClick={() => showCollectionPanel()}
+                      className={classNames(
+                        "block pt-4 pb-4 pr-4 rounded-t-lg active:border-b-2 ",
+                        collectedPanel &&
+                          "border-primary border-b-2 text-primary"
+                      )}
                     >
                       Collected
                     </Link>
                   </li>
                   <li className="mr-2">
                     <Link
-                      href={"/creator-space/"}
-                      className="block pt-4 pb-4 pr-4 rounded-t-lg active:border-b-2 active:border-primary hover:border-b-2 hover:border-primary hover:text-primary active:text-primary"
-                      aria-current="page"
+                      onClick={() => showCreatedPanel()}
+                      href={`creator-space`}
+                      className={classNames(
+                        "block pt-4 pb-4 pr-4 rounded-t-lg active:border-b-2 ",
+                        createdPanel && "border-primary border-b-2 text-primary"
+                      )}
                     >
                       Created
                     </Link>
@@ -40,7 +67,7 @@ const CreatorSpacePage: React.FC = () => {
                 </ul>
               </div>
             </div>
-            <span className="mt-16 text-slate-700">No Items yet.</span>
+            {collectedPanel ? <Collected></Collected> : <Created></Created>}
           </div>
         </div>
       ) : (

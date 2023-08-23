@@ -34,7 +34,7 @@ contract BrandStore is ReentrancyGuard {
    * @dev listingPrice indicates the percentage of the vallue of the token that gets deployed to the network
    * ether indicates 18 decimal points
    */
-  uint256 listingPrice = 0.025 ether; // equal to 0.0250000000000000
+  uint256 listingPrice = 0.00000025 ether; // equal to 0.000000250000000000
 
   /**
    * @notice Contract constructor for deployment
@@ -209,7 +209,7 @@ contract BrandStore is ReentrancyGuard {
 
     for(uint i = 0; i < totalItemCount; i++){
       // Condition: if the owner address of the brand item is equal to the one who is sending the transaction
-      if(idToBrandItem[i+1].owner == msg.sender){
+      if(idToBrandItem[i + 1].owner == msg.sender){
         // By incrementing we set the length for the array that hold the items itself
         itemCount += 1; // We increment the itemCount by 1.
       }
@@ -217,7 +217,7 @@ contract BrandStore is ReentrancyGuard {
     // Creating a new array of brand items with a length based on the number of items the sender holds (itemCount)
     BrandItem[] memory items = new BrandItem[](itemCount);
     for(uint i = 0; i < totalItemCount; i++){
-      if(idToBrandItem[i+1].owner == msg.sender){
+      if(idToBrandItem[i + 1].owner == msg.sender){
         uint currentId = idToBrandItem[i + 1].itemId;
         BrandItem storage currentItem = idToBrandItem[currentId];
         items[currentIndex] = currentItem;
@@ -240,8 +240,8 @@ contract BrandStore is ReentrancyGuard {
     uint currentIndex = 0;
 
     for(uint i = 0; i < totalItemCount; i++){
-      // Condition: if the seller address of the brand item is equall to the one who is sending the transaction
-      if(idToBrandItem[i+1].seller == msg.sender){
+      // Condition: if the seller address of the brand item is equal to the one who is sending the transaction
+      if(idToBrandItem[i + 1].seller == msg.sender){
         // By incrementing we set the length for the array that hold the items itself
         itemCount += 1; // We increment the itemCount by 1.
       }
@@ -250,8 +250,8 @@ contract BrandStore is ReentrancyGuard {
     // Creating a new array of brand items with a length based on the number of items the sender created (itemCount)
     BrandItem[] memory items = new BrandItem[](itemCount);
     for(uint i = 0; i < totalItemCount; i++){
-      if(idToBrandItem[i+1].seller == msg.sender){
-        uint currentId = idToBrandItem[i+1].itemId;
+      if(idToBrandItem[i + 1].seller == msg.sender){
+        uint currentId = idToBrandItem[i + 1].itemId;
         BrandItem storage currentItem = idToBrandItem[currentId];
         items[currentIndex] = currentItem;
         currentIndex += 1;

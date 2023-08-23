@@ -110,7 +110,7 @@ const Navigation: React.FC = () => {
                         >
                           Contests
                         </Link>
-                        {account.address === ownerAddress && (
+                        {account.isConnected && (
                           <Link
                             href="/creator-space"
                             className={

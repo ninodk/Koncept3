@@ -7,6 +7,7 @@ const nextConfig = {
     INFURA_API_KEY: process.env.INFURA_API_KEY,
     WALLET_CONNECT_PROJECT_ID: process.env.WALLET_CONNECT_PROJECT_ID,
     NEXT_PUBLIC_ENVIRONMENT: process.env.NEXT_PUBLIC_ENVIRONMENT,
+    INFURA_IPFS_URL: process.env.INFURA_IPFS_URL,
   },
   webpack: (config, { isServer }) => {
     if (!isServer) {

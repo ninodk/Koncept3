@@ -30,14 +30,22 @@ contract BrandNFT is ERC721URIStorage {
     contractAddress = marketAddress;
   }
   /**
+   * @notice An Event for when a new NFT gets created
+   * @dev This event gets triggered when a brand NFT gets created and can be used in the client application
+   * @param tokenId The unique identifier of the NFT.
+   */
+  event BrandNFTCreated (
+    uint256 indexed tokenId
+  );
+  /**
    * @notice Creates a NFT
    * @dev Creates and mints a new NFT with a given tokenURI.
    * The brand contract address and tokenId has already been stored within this contract.
    * The person invoking this is also known because it's a transaction.
    * @param tokenURI The token URI for the NFT's metadata.
-   * @return The ID of the minted NFT. Makes interaction with the Smart Contract from the client application possible
+   * @return tokenId The ID of the minted NFT. Makes interaction with the Smart Contract from the client application possible
    */
-  function createToken(string memory tokenURI) public returns (uint){
+  function createToken(string memory tokenURI) public returns (uint tokenId){
     _tokenIds.increment(); // incrementing the value (starting at 0)
     uint256 newItemId = _tokenIds.current();
 
@@ -56,7 +64,13 @@ contract BrandNFT is ERC721URIStorage {
      * @param true gives the permission to transact this token between users from within another contract
      */
     setApprovalForAll(contractAddress, true);
-    
+    /**
+     * @dev Firing of the event that can be picked up by the client application
+     */
+    emit BrandNFTCreated (
+      newItemId
+    );
+    return newItemId;
   }
 
 }
