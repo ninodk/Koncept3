@@ -43,9 +43,9 @@ contract BrandNFT is ERC721URIStorage {
    * The brand contract address and tokenId has already been stored within this contract.
    * The person invoking this is also known because it's a transaction.
    * @param tokenURI The token URI for the NFT's metadata.
-   * @return The ID of the minted NFT. Makes interaction with the Smart Contract from the client application possible
+   * @return tokenId The ID of the minted NFT. Makes interaction with the Smart Contract from the client application possible
    */
-  function createToken(string memory tokenURI) public returns (uint){
+  function createToken(string memory tokenURI) public returns (uint tokenId){
     _tokenIds.increment(); // incrementing the value (starting at 0)
     uint256 newItemId = _tokenIds.current();
 
@@ -70,6 +70,7 @@ contract BrandNFT is ERC721URIStorage {
     emit BrandNFTCreated (
       newItemId
     );
+    return newItemId;
   }
 
 }
