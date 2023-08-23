@@ -66,7 +66,7 @@ const CreateNFT: React.FC = () => {
     if (!name || !price || !description) return;
     const hash = await uploadNftToIpfs();
     await createToken(hash);
-    router.push(`/`);
+    router.push(`/collections/`);
   };
 
   /* Save function to upload Token metadata to IPFS */

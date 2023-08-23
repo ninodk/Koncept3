@@ -83,10 +83,7 @@ const Created: React.FC = ({ children }: { children: React.ReactNode }) => {
               key={nft.tokenId}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link
-                href={`/collections/NFT/${nft.contentHash}`}
-                key={nft.tokenId}
-              >
+              <Link href={`/creator-space/`} key={nft.tokenId}>
                 {nft.image && (
                   <img
                     className="p-3 rounded-3xl"
@@ -96,7 +93,7 @@ const Created: React.FC = ({ children }: { children: React.ReactNode }) => {
                 )}
               </Link>
               <div className="pt-2 pb-4 pl-4 pr-4">
-                <Link href={`/collections/NFT/${nft.contentHash}`}>
+                <Link href={`/creator-space/`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {nft.name}
                   </span>

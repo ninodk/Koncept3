@@ -95,16 +95,7 @@ const NFT: React.FC = ({ nft }: { nft: NFTProps }) => {
     </div>
   );
 };
-// interface NFTProps {
-//   price: string;
-//   tokenId: string;
-//   seller: string;
-//   owner: string;
-//   image: string;
-//   name: string;
-//   description: string;
-//   contentHash: string;
-// }
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const items = await getItems();
   const paths = items.map((token) => ({
