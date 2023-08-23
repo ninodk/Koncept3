@@ -13,6 +13,8 @@ import publicClient from "../../utility/viem/client";
 // ABIs
 import BrandNFTArtifact from "../../../../server/src/artifacts/contracts/BrandNFT.sol/BrandNFT.json";
 import BrandStoreArtifact from "../../../../server/src/artifacts/contracts/BrandStore.sol/BrandStore.json";
+import { NFTProps } from "../../types/tokenTypes";
+
 const ipfsUrl = process.env.INFURA_IPFS_URL;
 
 const CollectionsPage: React.FC = () => {
@@ -25,7 +27,7 @@ const CollectionsPage: React.FC = () => {
     },
   });
 
-  const [NFTs, setNFTs] = useState([]);
+  const [NFTs, setNFTs] = useState<NFTProps[]>([]);
   const [loadingState, setLoadingState] = useState("not-loaded");
 
   useEffect(() => {
@@ -33,55 +35,52 @@ const CollectionsPage: React.FC = () => {
   }, []);
 
   const loadNFTs = async () => {
-    if (account && account.isConnected && account.address === ownerAddress) {
-      const [account] = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      const walletClient = createWalletClient({
-        account,
-        chain: polygonMumbai,
-        transport: custom(window.ethereum),
-      });
+    const [account] = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    const walletClient = createWalletClient({
+      account,
+      chain: polygonMumbai,
+      transport: custom(window.ethereum),
+    });
 
-      const data = await publicClient.readContract({
-        address: storeContractAddress,
-        abi: BrandStoreArtifact.abi,
-        functionName: "fetchBrandItems",
-      });
+    const data = await publicClient.readContract({
+      address: storeContractAddress,
+      abi: BrandStoreArtifact.abi,
+      functionName: "fetchBrandItems",
+    });
+    const items = await Promise.all(
+      data.map(async (i) => {
+        const tokenURI = await publicClient.readContract({
+          address: NftContractAddress,
+          abi: BrandNFTArtifact.abi,
+          functionName: "tokenURI",
+          args: [i.tokenId],
+        });
 
-      const items = await Promise.all(
-        data.map(async (i) => {
-          const tokenURI = await publicClient.readContract({
-            address: NftContractAddress,
-            abi: BrandNFTArtifact.abi,
-            functionName: "tokenURI",
-            args: [i.tokenId],
-          });
+        //const meta = await axios.get(tokenURI);
+        const metaUrl = `${ipfsUrl}${tokenURI}`;
+        const response = await fetch(metaUrl);
+        const meta = await response.json();
 
-          //const meta = await axios.get(tokenURI);
-          const metaUrl = `${ipfsUrl}${tokenURI}`;
-          const response = await fetch(metaUrl);
-          const meta = await response.json();
+        const price = formatEther(i.price);
+        let image = (meta.image = `${ipfsUrl}${meta.image}`);
 
-          const price = formatEther(i.price);
-          let image = (meta.image = `${ipfsUrl}${meta.image}`);
-
-          let item = {
-            price,
-            tokenId: i.tokenId.toString(),
-            seller: i.seller.toString(),
-            owner: i.owner.toString(),
-            image: meta.image,
-            name: meta.name,
-            description: meta.description,
-            contentHash: tokenURI,
-          };
-          return item;
-        })
-      );
-      setNFTs(items);
-      setLoadingState("loaded");
-    }
+        let item = {
+          price,
+          tokenId: i.tokenId.toString(),
+          seller: i.seller.toString(),
+          owner: i.owner.toString(),
+          image: meta.image,
+          name: meta.name,
+          description: meta.description,
+          contentHash: tokenURI,
+        };
+        return item;
+      })
+    );
+    setNFTs(items);
+    setLoadingState("loaded");
   };
   return (
     <div className="w-full max-h-screen">
@@ -99,13 +98,16 @@ const CollectionsPage: React.FC = () => {
         Now Listed
       </span>
       <div className="flex flex-row pt-5 space-x-4">
-        {NFTs && NFTs.length ? (
+        {loadingState === "loaded" && NFTs.length ? (
           NFTs.map((nft) => (
             <div
-              key={nft.id}
+              key={nft.tokenId}
               className="flex flex-col border-2 shadow w-80 rounded-2xl border-primary bg-slate-800"
             >
-              <Link href={`/collections/NFT/${nft.contentHash}`} key={nft.id}>
+              <Link
+                href={`/collections/NFT/${nft.contentHash}`}
+                key={nft.tokenId}
+              >
                 {nft.image && (
                   <img
                     className="p-3 rounded-3xl"
@@ -115,7 +117,7 @@ const CollectionsPage: React.FC = () => {
                 )}
               </Link>
               <div className="pt-2 pb-4 pl-4 pr-4">
-                <Link href={`/collections/NFT/${nft.id}`}>
+                <Link href={`/collections/NFT/${nft.contentHash}`}>
                   <span className="flex mb-2 text-2xl font-bold text-gray-900 dark:text-slate-100">
                     {nft.name}
                   </span>

@@ -1,12 +1,9 @@
 import { useRouter } from "next/router";
-import SingleNFT from "./SingleNFT";
 import { useAccount } from "wagmi";
 import Head from "next/head";
-import TraitBox from "../../../components/Traits/TraitBox";
 import { GetStaticPaths, GetStaticProps } from "next";
 import publicClient from "../../../utility/viem/client";
 import { createWalletClient, custom, formatEther } from "viem";
-import { polygonMumbai } from "viem/chains";
 import {
   NftContractAddress,
   ownerAddress,
@@ -16,22 +13,10 @@ import {
 import BrandNFTArtifact from "../../../../../server/src/artifacts/contracts/BrandNFT.sol/BrandNFT.json";
 import BrandStoreArtifact from "../../../../../server/src/artifacts/contracts/BrandStore.sol/BrandStore.json";
 import { useState } from "react";
+import { NFTProps } from "../../../types/tokenTypes";
 const ipfsUrl = process.env.INFURA_IPFS_URL;
 
-const NFT: React.FC = ({
-  nft,
-}: {
-  nft: {
-    price: string;
-    tokenId: string;
-    seller: string;
-    owner: string;
-    image: string;
-    name: string;
-    description: string;
-    contentHash: string;
-  };
-}) => {
+const NFT: React.FC = ({ nft }: { nft: NFTProps }) => {
   const [NFTs, setNFTs] = useState([]);
   const router = useRouter();
   const { id } = router.query;
@@ -55,73 +40,71 @@ const NFT: React.FC = ({
 
   return (
     <div className="flex flex-col w-full align-center max-w-screen">
-      {nft && account.isConnected && account.address === ownerAddress && (
-        <div>
-          <Head>
-            <title>{nft.name} NFT</title>
-          </Head>
-          <div className="w-full max-w-full">
-            <div className="flex flex-row gap-2">
-              <div className="relative mt-5 mb-5 mr-5 overflow-hidden max-w-1/2 w-max">
-                <img
-                  src={nft.image}
-                  className="border-2 border-solid rounded-lg border-primary"
-                  width={512}
-                  height={512}
-                  alt="NFT Image"
-                ></img>
+      <div>
+        <Head>
+          <title>{nft.name} NFT</title>
+        </Head>
+        <div className="w-full max-w-full">
+          <div className="flex flex-row gap-2">
+            <div className="relative mt-5 mb-5 mr-5 overflow-hidden max-w-1/2 w-max">
+              <img
+                src={nft.image}
+                className="border-2 border-solid rounded-lg border-primary"
+                width={512}
+                height={512}
+                alt="NFT Image"
+              ></img>
+            </div>
+            <div className="flex flex-col w-1/2 mt-5 mb-5 mr-5 overflow-hidden max-w-1/2">
+              <div className="flex flex-row justify-between">
+                <div className="text-3xl font-semibold text-slate-800">
+                  {nft.name}
+                </div>
+                <div className="flex place-content-end">
+                  <button className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-900">
+                    Buy
+                  </button>
+                </div>
               </div>
-              <div className="flex flex-col w-1/2 mt-5 mb-5 mr-5 overflow-hidden max-w-1/2">
-                <div className="flex flex-row justify-between">
-                  <div className="text-3xl font-semibold text-slate-800">
-                    {nft.name}
-                  </div>
-                  <div className="flex place-content-end">
-                    <button className="px-4 py-1 text-white rounded-full bg-primary hover:bg-slate-900">
-                      Buy
-                    </button>
-                  </div>
-                </div>
-                <div className="flex flex-row">
-                  <p className="space-x-2">
-                    <span className="text-slate-900">Owned by</span>
-                    <span className="text-primary">{nft.owner}</span>
-                  </p>
-                </div>
-                <div className="w-full mt-3">
-                  <p className="text-xs tracking-wider uppercase text-slate-900">
-                    <span>price</span>
-                  </p>
-                  <p className="text-xl font-medium tracking-wide uppercase text-primary">
-                    <span>{nft.price} MATIC</span>
-                  </p>
-                </div>
-                <div className="w-full mt-3">
-                  <p className="text-xs tracking-wider uppercase text-slate-900">
-                    <span>description</span>
-                  </p>
-                  <p className="text-xl font-medium tracking-wide text-primary">
-                    <span>{nft.description}</span>
-                  </p>
-                </div>
+              <div className="flex flex-row">
+                <p className="space-x-2">
+                  <span className="text-slate-900">Owned by</span>
+                  <span className="text-primary">{nft.owner}</span>
+                </p>
+              </div>
+              <div className="w-full mt-3">
+                <p className="text-xs tracking-wider uppercase text-slate-900">
+                  <span>price</span>
+                </p>
+                <p className="text-xl font-medium tracking-wide uppercase text-primary">
+                  <span>{nft.price} MATIC</span>
+                </p>
+              </div>
+              <div className="w-full mt-3">
+                <p className="text-xs tracking-wider uppercase text-slate-900">
+                  <span>description</span>
+                </p>
+                <p className="text-xl font-medium tracking-wide text-primary">
+                  <span>{nft.description}</span>
+                </p>
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
-interface NFTProps {
-  price: string;
-  tokenId: string;
-  seller: string;
-  owner: string;
-  image: string;
-  name: string;
-  description: string;
-  contentHash: string;
-}
+// interface NFTProps {
+//   price: string;
+//   tokenId: string;
+//   seller: string;
+//   owner: string;
+//   image: string;
+//   name: string;
+//   description: string;
+//   contentHash: string;
+// }
 export const getStaticPaths: GetStaticPaths = async () => {
   const items = await getItems();
   const paths = items.map((token) => ({
