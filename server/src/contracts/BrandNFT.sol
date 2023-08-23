@@ -29,6 +29,11 @@ contract BrandNFT is ERC721URIStorage {
   constructor(address marketAddress) ERC721("Koncept Brand NFT", "KBN"){
     contractAddress = marketAddress;
   }
+  /**
+   * @notice An Event for when a new NFT gets created
+   * @dev This event gets triggered when a brand NFT gets created and can be used in the client application
+   * @param tokenId The unique identifier of the NFT.
+   */
   event BrandNFTCreated (
     uint256 indexed tokenId
   );
@@ -59,7 +64,9 @@ contract BrandNFT is ERC721URIStorage {
      * @param true gives the permission to transact this token between users from within another contract
      */
     setApprovalForAll(contractAddress, true);
-    
+    /**
+     * @dev Firing of the event that can be picked up by the client application
+     */
     emit BrandNFTCreated (
       newItemId
     );

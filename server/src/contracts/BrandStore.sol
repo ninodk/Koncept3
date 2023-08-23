@@ -34,7 +34,7 @@ contract BrandStore is ReentrancyGuard {
    * @dev listingPrice indicates the percentage of the vallue of the token that gets deployed to the network
    * ether indicates 18 decimal points
    */
-  uint256 listingPrice = 0.00000025 ether; // equal to 0.0250000000000000
+  uint256 listingPrice = 0.00000025 ether; // equal to 0.000000250000000000
 
   /**
    * @notice Contract constructor for deployment
