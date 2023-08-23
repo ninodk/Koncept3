@@ -85,11 +85,8 @@ const CreateNFT: React.FC = () => {
   const createToken = async (hash: string) => {
     // option 1 - using Viem (alternative for Ethers library)
     if (account && account.isConnected && account.address === ownerAddress) {
-      const [account] = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
       const walletClient = createWalletClient({
-        account,
+        account: account.address,
         chain: polygonMumbai,
         transport: custom(window.ethereum),
       });
@@ -100,7 +97,7 @@ const CreateNFT: React.FC = () => {
           abi: BrandNFTArtifact.abi,
           functionName: "createToken",
           args: [hash],
-          account,
+          account: account.address,
           chain: polygonMumbai,
         });
         console.log("request create token: ", request);
@@ -132,11 +129,8 @@ const CreateNFT: React.FC = () => {
 
   const createBrandItem = async (tokenId?: BigInt) => {
     if (account && account.isConnected && account.address === ownerAddress) {
-      const [account] = await window.ethereum.request({
-        method: "eth_requestAccounts",
-      });
       const walletClient = createWalletClient({
-        account,
+        account: account.address,
         chain: polygonMumbai,
         transport: custom(window.ethereum),
       });
@@ -155,7 +149,7 @@ const CreateNFT: React.FC = () => {
           functionName: "createBrandItem",
           args: [NftContractAddress, tokenId, price],
           value: data,
-          account,
+          account: account.address,
           chain: polygonMumbai,
         });
         console.log("request create brand item: ", request);

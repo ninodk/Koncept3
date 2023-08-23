@@ -33,52 +33,46 @@ const Created: React.FC = ({ children }: { children: React.ReactNode }) => {
     loadCreatedNFTs();
   });
   const loadCreatedNFTs = async () => {
-    // const [account] = await window.ethereum.request({
-    //   method: "eth_requestAccounts",
-    // });
-    const walletClient = createWalletClient({
-      account: account.address,
-      chain: polygonMumbai,
-      transport: custom(window.ethereum),
-    });
+    if (account && account.isConnected && account.address === ownerAddress) {
+      const data = await publicClient.readContract({
+        address: storeContractAddress,
+        abi: BrandStoreArtifact.abi,
+        functionName: "fetchBrandItemsCreated",
+        account: account.address,
+      });
+      const createdItems = await Promise.all(
+        data.map(async (i) => {
+          const tokenURI = await publicClient.readContract({
+            address: NftContractAddress,
+            abi: BrandNFTArtifact.abi,
+            functionName: "tokenURI",
+            args: [i.tokenId],
+          });
 
-    const data = await publicClient.readContract({
-      address: storeContractAddress,
-      abi: BrandStoreArtifact.abi,
-      functionName: "fetchBrandItemsCreated",
-    });
-    const items = await Promise.all(
-      data.map(async (i) => {
-        const tokenURI = await publicClient.readContract({
-          address: NftContractAddress,
-          abi: BrandNFTArtifact.abi,
-          functionName: "tokenURI",
-          args: [i.tokenId],
-        });
+          //const meta = await axios.get(tokenURI);
+          const metaUrl = `${ipfsUrl}${tokenURI}`;
+          const response = await fetch(metaUrl);
+          const meta = await response.json();
 
-        //const meta = await axios.get(tokenURI);
-        const metaUrl = `${ipfsUrl}${tokenURI}`;
-        const response = await fetch(metaUrl);
-        const meta = await response.json();
+          const price = formatEther(i.price);
+          let image = (meta.image = `${ipfsUrl}${meta.image}`);
 
-        const price = formatEther(i.price);
-        let image = (meta.image = `${ipfsUrl}${meta.image}`);
-
-        let item = {
-          price,
-          tokenId: i.tokenId.toString(),
-          seller: i.seller.toString(),
-          owner: i.owner.toString(),
-          image: meta.image,
-          name: meta.name,
-          description: meta.description,
-          contentHash: tokenURI,
-        };
-        return item;
-      })
-    );
-    setCreatedNFTs(items);
-    setLoadingState("loaded");
+          let item = {
+            price,
+            tokenId: i.tokenId.toString(),
+            seller: i.seller.toString(),
+            owner: i.owner.toString(),
+            image: meta.image,
+            name: meta.name,
+            description: meta.description,
+            contentHash: tokenURI,
+          };
+          return item;
+        })
+      );
+      setCreatedNFTs(createdItems);
+      setLoadingState("loaded");
+    }
   };
   return (
     <div className="w-full max-h-screen">

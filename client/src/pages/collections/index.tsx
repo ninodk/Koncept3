@@ -35,12 +35,6 @@ const CollectionsPage: React.FC = () => {
   }, []);
 
   const loadNFTs = async () => {
-    const walletClient = createWalletClient({
-      account: account.address,
-      chain: polygonMumbai,
-      transport: custom(window.ethereum),
-    });
-
     const data = await publicClient.readContract({
       address: storeContractAddress,
       abi: BrandStoreArtifact.abi,
