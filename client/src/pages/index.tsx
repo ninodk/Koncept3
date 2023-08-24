@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import Link from "next/link";
 
 const HomePage: React.FC = () => {
   return (
@@ -36,24 +37,78 @@ const HomePage: React.FC = () => {
           </p>
         </div>
         <div className="flex flex-row space-x-4">
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700"></div>
-            <p className="font-bold text-slate-600">What is web3?</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700"></div>
-            <p className="font-bold text-slate-600">How is cryptocurrency?</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700 "></div>
-            <p className="font-bold text-slate-600">What is a crypto wallet?</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700 "></div>
-            <p className="font-bold text-slate-600">
-              How to stay protected in web3
-            </p>
-          </div>
+          <Link href={`https://opensea.io/learn/what-is-web3`} target="_blank">
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/billboard.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">What is web3?</p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/what-is-cryptocurrency`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <Image
+                  src={`/k3-cryptocoin.png`}
+                  className="rounded-xl"
+                  style={{ objectFit: "cover" }}
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                />
+              </div>
+              <p className="font-bold text-slate-600">
+                What is cryptocurrency?
+              </p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/what-is-crypto-wallet`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/crypto-wallet.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">
+                What is a crypto wallet?
+              </p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/how-to-stay-protected-in-web3`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/how-to-stay-protected.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">
+                How to stay protected in web3
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
       <div className="relative block pt-2 pb-20 overflow-hidden">
@@ -66,22 +121,71 @@ const HomePage: React.FC = () => {
           </p>
         </div>
         <div className="flex flex-row space-x-4">
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700"></div>
-            <p className="font-bold text-slate-600">What is an NFT?</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700"></div>
-            <p className="font-bold text-slate-600">How to buy an NFT</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700 "></div>
-            <p className="font-bold text-slate-600">What are NFT drops?</p>
-          </div>
-          <div className="flex-row w-full h-full">
-            <div className="border-2 rounded-xl w-96 h-80 border-primary bg-slate-700 "></div>
-            <p className="font-bold text-slate-600">What is minting?</p>
-          </div>
+          <Link href={`https://opensea.io/learn/what-are-nfts`} target="_blank">
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/nft-dessert.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">What is an NFT?</p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/how-to-buy-nft`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/purchase-nft.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">How to buy an NFT</p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/what-are-nft-drops`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/nft-drop-2.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">What are NFT drops?</p>
+            </div>
+          </Link>
+          <Link
+            href={`https://opensea.io/learn/what-is-minting-nft`}
+            target="_blank"
+          >
+            <div className="flex-row w-full h-full">
+              <div className="flex border-2 shadow w-96 h-80 rounded-xl border-primary bg-slate-800">
+                <img
+                  src={`/billboard.png`}
+                  className="rounded-xl"
+                  width={512}
+                  height={512}
+                  alt="NFT Image"
+                ></img>
+              </div>
+              <p className="font-bold text-slate-600">What is minting?</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
