@@ -4,7 +4,7 @@ pragma solidity ^0.8.18;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 /** 
- * ReentrancyGuard is a security mechanismgives
+ * ReentrancyGuard is a design pattern and security mechanism
  *  Gives us the non reentrant utility 
  *  Allows us to protect certain transactions that are talking to a seperate contract 
  *  Prevents someone hitting this with multiple requests and transactions
@@ -16,8 +16,8 @@ import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 /**
  * @title Brand Store Smart Contract
  * @author Nino De Kerpel
- * @notice A Smart Contract for managing the digital store of the brand.
- * @dev A Smart Contract for buying,selling and fetching brand items in its digital store.
+ * @notice A Smart Contract for managing the digital store of the brand
+ * @dev A Smart Contract for buying, selling and fetching brand items in its digital store
  */
 contract BrandStore is ReentrancyGuard {
   using Counters for Counters.Counter;
@@ -26,11 +26,11 @@ contract BrandStore is ReentrancyGuard {
 
   /**
    * @notice Brand owner of the contract
-   * @dev We want to be able to determine who is the brand owner of this contract because they're making a comission on every item sold
+   * @dev We want to be able to determine who is the brand owner of this contract because they're making a commission on every item sold
    */
   address payable brandOwner;
   /**
-   * @notice Commission rate when listing an item. The brand owner of this contract earns from this.
+   * @notice Commission rate when listing an item. The brand owner of this contract earns from this
    * @dev listingPrice indicates the percentage of the vallue of the token that gets deployed to the network
    * ether indicates 18 decimal points
    */
@@ -46,8 +46,8 @@ contract BrandStore is ReentrancyGuard {
   }
   
   /**
-   * @notice A struct is an object that has properties and defines the shape of a Brand Item.
-   * @dev Creating a Brand Contest Object / Map
+   * @notice A struct is an object that has properties and defines the shape of a Brand Item
+   * @dev Creating a Brand Item Object / Map
    */
   struct BrandItem {
     uint itemId;
@@ -58,20 +58,22 @@ contract BrandStore is ReentrancyGuard {
     uint256 price;
     bool sold;
   }
-  // Mapping over brand items to keep up with all the items that have been created
-  //  In order to fetch a brand item we need to know and pass its unique identifier
+  /**
+   * @dev Mapping over brand items to keep up with all the items that have been created
+   * @dev In order to fetch a brand item we need to know and pass its unique identifier
+   */
   mapping(uint256 => BrandItem) private idToBrandItem;
 
   /**
    * @notice An Event for when a brand item gets created
    * @dev This event gets triggered when a brand item gets created and can be used in the client application
-   * @param itemId The unique identifier of the brand item.
-   * @param brandNFTContract The contract address of the brand NFT. 
-   * @param tokenId The unique identifier of the brand token.
-   * @param seller The address of the seller of the brand item.
-   * @param owner The address of the owner of the brand item.
-   * @param price The price of the brand item in ether.
-   * @param sold A boolean indicates true/false wether the brand item has been sold.
+   * @param itemId The unique identifier of the brand item
+   * @param brandNFTContract The contract address of the brand NFT
+   * @param tokenId The unique identifier of the brand token
+   * @param seller The address of the seller of the brand item
+   * @param owner The address of the owner of the brand item
+   * @param price The price of the brand item in ether
+   * @param sold A boolean indicates true/false wether the brand item has been sold
    */
   event BrandItemCreated (
     uint indexed itemId,
@@ -85,20 +87,16 @@ contract BrandStore is ReentrancyGuard {
 
   /**
    * @notice Function to return the listing price (commission rate of the platform)
-   * @dev Function to return the listing price. 
-   * When want to access this in the client application when this contract gets deployed. 
-   * Avoids hardcoding this in our frontend
+   * @dev Function to return the listing price for access in our client application (avoids hardcoding this in our frontend) 
    */
   function getListingPrice() public view returns (uint256) {
     return listingPrice;
   }
-
   /**
-   * @notice Creates and sets a brand item up for sale.
-   * @dev Creates and sets a brand item up for sale.
-   * Using the nonReentrant modifier 
-   * Contract owner earns on listing commission (brand owner)
-   * @param brandNFTContract contract address of the deployed BrandNFT.sol Smart Contract
+   * @notice Creates and sets a brand item up for sale
+   * @dev Creates and sets a brand item up for sale using the nonReentrant modifier
+   * @dev Contract owner earns on listing commission (brand owner)
+   * @param brandNFTContract contract address of the deployed BrandNFT Smart Contract
    * @param tokenId unique identifier of the token from that contract
    * @param price price of the token
    */
@@ -109,10 +107,10 @@ contract BrandStore is ReentrancyGuard {
   ) public payable nonReentrant{
     // Conditions
     require(price > 0, "Price must be at least 1 wei"); // 1 wei is the very bottom of 18 decimals (0.000000000000000001)
-    //  To create a brand item you need to send in some payment to pay for the listing transaction.
+    //  To create a brand item you need to send in some payment to pay for the listing transaction
     require(msg.value == listingPrice, "Price must be equal to listing price");
 
-    // itemId is the unique identifier of the brand item that goes for salle
+    // itemId is the unique identifier of the brand item that goes for sale
     _itemIds.increment();
     uint256 itemId = _itemIds.current();
 
@@ -127,9 +125,11 @@ contract BrandStore is ReentrancyGuard {
       false // sold is by default false
     );
     
-    // Transfering the ownership of the NFT to this contract
-    //  The person who is sending this transactionn owns this NFT and we want to transfer the ownership to this contract
-    //  This contract is going to transfer the ownership to the next buyer
+    /**
+     * Transfering the ownership of the NFT to this contract
+     * The person who is sending this transactionn owns this NFT and we want to transfer the ownership to this contract
+     * This contract is going to transfer the ownership to the next buyer
+     */
     IERC721(brandNFTContract).transferFrom(msg.sender, address(this), tokenId);
 
     /**
@@ -145,10 +145,9 @@ contract BrandStore is ReentrancyGuard {
       false
       );
   }
-
   /**
    * 
-   * @param brandNFTContract contract address of the deployed BrandNFT.sol Smart Contract
+   * @param brandNFTContract contract address of the deployed BrandNFT Smart Contract
    * @param itemId unique identifier of the brand item being created and put for sale
    */
   function createMarketSale(address brandNFTContract, uint256 itemId) public payable nonReentrant {
@@ -198,7 +197,7 @@ contract BrandStore is ReentrancyGuard {
   }
 
   /**
-   * @notice Returninng the items that a user has purchased
+   * @notice Returning the items that a user has purchased
    * @dev
    * @return items an array of BrandItems purchased by the user
    */

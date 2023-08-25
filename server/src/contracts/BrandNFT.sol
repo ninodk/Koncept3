@@ -9,7 +9,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
  * @title Brand NFT Smart Contract
  * @author Nino De Kerpel
  * @notice Smart Contract for creating a Non-Fungible Token (NFT)
- * @dev A smart contract for creating and minting non-fungible tokens (NFTs).
+ * @dev A smart contract for creating and minting non-fungible tokens (NFTs)
  */
 contract BrandNFT is ERC721URIStorage {
   using Counters for Counters.Counter;
@@ -17,14 +17,14 @@ contract BrandNFT is ERC721URIStorage {
   Counters.Counter private _tokenIds;
   /**
    * @notice Address of the Brand Market that we want to allow the NFT to interact with and vice versa
-   * @dev We want to be able to give the brandmarket the ability to transact these tokens or change the ownership of the tokens from a seperate contract
+   * @dev We want to be able to give the brand store the ability to transact these tokens or change the ownership of the tokens from a seperate contract
    */
   address contractAddress;
 
   /**
    * @dev Initializes the contract with the provided brand address as a parameter.
-   * The contract name is set as "Koncept Brand Tokens" with the symbol "KBT".
-   * @param marketAddress The address of the brand associated with the NFTs.
+   * The contract name is set as "Koncept Brand NFT" with the symbol "KBN"
+   * @param marketAddress The address of the brand associated with the NFTs
    */
   constructor(address marketAddress) ERC721("Koncept Brand NFT", "KBN"){
     contractAddress = marketAddress;
@@ -32,18 +32,18 @@ contract BrandNFT is ERC721URIStorage {
   /**
    * @notice An Event for when a new NFT gets created
    * @dev This event gets triggered when a brand NFT gets created and can be used in the client application
-   * @param tokenId The unique identifier of the NFT.
+   * @param tokenId The unique identifier of the NFT
    */
   event BrandNFTCreated (
     uint256 indexed tokenId
   );
   /**
    * @notice Creates a NFT
-   * @dev Creates and mints a new NFT with a given tokenURI.
-   * The brand contract address and tokenId has already been stored within this contract.
-   * The person invoking this is also known because it's a transaction.
-   * @param tokenURI The token URI for the NFT's metadata.
-   * @return tokenId The ID of the minted NFT. Makes interaction with the Smart Contract from the client application possible
+   * @dev Creates and mints a new NFT with a given tokenURI
+   * The brand contract address and tokenId has already been stored within this contract
+   * The person invoking this is also known because it's a transaction
+   * @param tokenURI The token URI for the NFT metadata
+   * @return tokenId The ID of the minted NFT for interaction with the Smart Contract from the client application
    */
   function createToken(string memory tokenURI) public returns (uint tokenId){
     _tokenIds.increment(); // incrementing the value (starting at 0)
@@ -59,7 +59,7 @@ contract BrandNFT is ERC721URIStorage {
     _setTokenURI(newItemId, tokenURI);
     /**
      * @notice 
-     * @dev Giving the brand the approval to transact this token between users from within another contract. Else we couldn't do this from another contract
+     * @dev Giving the brand the approval to transact this token between users from within another contract (otherwise we couldn't do this from another contract)
      * @param contractAddress is the address of this contract
      * @param true gives the permission to transact this token between users from within another contract
      */
